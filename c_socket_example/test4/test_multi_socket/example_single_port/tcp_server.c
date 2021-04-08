@@ -96,7 +96,7 @@ void* build_connection(void* _argv){
 
 	while(strcmp(msg, "quit") != 0){
 		while(read(client_socket, msg, sizeof(msg)-1)==-1 || str_len(msg)<=24) {} //error_handling("read error");
-		printf("[ %d : %d : %d ] [client : %s]%s   %d   \n", tm.tm_hour, tm.tm_min, tm.tm_sec, name, msg, str_len(msg));
+		printf("[ %d : %d : %d ] [client : %s]%s  \n", tm.tm_hour, tm.tm_min, tm.tm_sec, name, msg);
 	}
 
 	printf("[ client : %s ....disconnected ]\n", name);
