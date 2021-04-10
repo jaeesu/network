@@ -19,7 +19,7 @@ int main(int argc, char* argv[]){
 	int status;
 	pthread_t p_thread[2];
 
-	unsigned long int server_socket;
+	unsigned long int server_socket; //int. unsinged int일 때 넘겨줄 수 없었음
 	struct sockaddr_in server_addr;
 	server_socket = socket(PF_INET, SOCK_STREAM, 0);
 	if(server_socket == -1) error_handling("socket error\n");
@@ -51,6 +51,8 @@ int main(int argc, char* argv[]){
 	
 	pthread_join(p_thread[0], (void**)&status);
 	pthread_join(p_thread[1], (void**)&status);
+
+	close(server_socket);
 	
 
 	return 0;
@@ -97,7 +99,9 @@ void* build_connection(void* _argv){
 	while(strcmp(msg, "quit") != 0){
 		while(read(client_socket, msg, sizeof(msg)-1)==-1 || str_len(msg)<=24) {} //error_handling("read error");
 		printf("[ %d : %d : %d ] [client : %s]%s  \n", tm.tm_hour, tm.tm_min, tm.tm_sec, name, msg);
+		write(client_socket, msg, sizeof(msg)-1);
 	}
+	//전송자말고 다른 클라이언트들에 브로드캐스트 해주는 코드 작성
 
 	printf("[ client : %s ....disconnected ]\n", name);
 
