@@ -38,7 +38,6 @@ int main(int argc, char* argv[]){
 	arr[1] = (void*)argv[1];
 
 	int i=0;
-
 	//while-listen
 	while(i<3){
 
