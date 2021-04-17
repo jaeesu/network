@@ -14,6 +14,12 @@ using namespace std;
 
 void error_handling(string);
 
+pthread_t build_thread(pthread_t*, void*, void*);
+
+void* build_connection(void*);
+
+int str_len(char*);
+
 class tcpserversocket{
 	private:
 		unsigned long int _socket;

@@ -16,10 +16,18 @@ void error_handling(string);
 class tcpclientsocket{
 	private :
 		unsigned long int _socket;
+		struct sockaddr_in _addr;
 		struct sockaddr_in server_addr;
+		socklen_t _addr_size;
 
 	public :
+		tcpclientsocket();
 		void start(char*);
+		unsigned long int get_socket();
+		void set_socket(int);
+		sockaddr* get_addr();
+		socklen_t* get_addr_size();
+
 
 };
 

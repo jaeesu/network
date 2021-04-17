@@ -21,6 +21,26 @@ void tcpclientsocket::start(char* _PORT){
 	close(_socket);
 }
 
+tcpclientsocket(){
+	_addr_size = sizeof(_addr);
+}
+
+unsigned long int tcpclientsocket::get_socket(){
+	return _socket;
+}
+
+void tcpclientsocket::set_socket(int _argv){
+	_socket = _argv;
+}
+
+sockaddr* tcpclientsocket::get_addr(){
+	return &_addr;
+}
+
+socklen_t* tcpclientsocket::get_addr_size(){
+	return _addr_size;
+}
+
 
 void error_handling(string _msg){
 	char msg[100];
@@ -36,3 +56,4 @@ int main(){
 	client_socket.start((char*)MAIN_PORT);
 
 }
+
